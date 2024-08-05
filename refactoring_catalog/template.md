@@ -2,7 +2,15 @@
 
 ## 例
 
+```typeScript
+
+```
+
 **⇩**
+
+```typeScript
+
+```
 
 ## 動機
 
