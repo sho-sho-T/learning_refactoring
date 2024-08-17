@@ -1,44 +1,50 @@
 # レコードのカプセル化
 
 ## 概要
+
 レコードのカプセル化は、単純なデータ構造（レコード）をクラスでラップすることで、データの操作と管理をより柔軟かつ安全にするリファクタリング技法です。
 
 ## 例
 
 ### Before
+
 ```typescript
-let organization = {name: "Acme Gooseberries", country: "GB"};
+let organization = { name: "Acme Gooseberries", country: "GB" };
 ```
 
 ### After
+
 ```typescript
 class Organization {
-    private _name: string;
-    private _country: string;
+  private _name: string;
+  private _country: string;
 
-    constructor(data: {name: string, country: string}) {
-        this._name = data.name;
-        this._country = data.country;
-    }
+  constructor(data: { name: string; country: string }) {
+    this._name = data.name;
+    this._country = data.country;
+  }
 
-    get name(): string {
-        return this._name;
-    }
+  get name(): string {
+    return this._name;
+  }
 
-    set name(value: string) {
-        this._name = value;
-    }
+  set name(value: string) {
+    this._name = value;
+  }
 
-    get country(): string {
-        return this._country;
-    }
+  get country(): string {
+    return this._country;
+  }
 
-    set country(value: string) {
-        this._country = value;
-    }
+  set country(value: string) {
+    this._country = value;
+  }
 }
 
-let organization = new Organization({name: "Acme Gooseberries", country: "GB"});
+let organization = new Organization({
+  name: "Acme Gooseberries",
+  country: "GB",
+});
 ```
 
 ## 動機
@@ -55,13 +61,13 @@ let organization = new Organization({name: "Acme Gooseberries", country: "GB"});
    レコードを保持する変数をカプセル化します。
 
    ```typescript
-   let organization = {name: "Acme Gooseberries", country: "GB"};
+   let organization = { name: "Acme Gooseberries", country: "GB" };
 
    function getOrganization() {
-       return organization;
+     return organization;
    }
    function setOrganization(arg) {
-       organization = arg;
+     organization = arg;
    }
    ```
 
@@ -70,24 +76,27 @@ let organization = new Organization({name: "Acme Gooseberries", country: "GB"});
 
    ```typescript
    class Organization {
-       private _data;
+     private _data;
 
-       constructor(data) {
-           this._data = data;
-       }
+     constructor(data) {
+       this._data = data;
+     }
 
-       get rawData() {
-           return {...this._data};
-       }
+     get rawData() {
+       return { ...this._data };
+     }
    }
 
-   let organization = new Organization({name: "Acme Gooseberries", country: "GB"});
+   let organization = new Organization({
+     name: "Acme Gooseberries",
+     country: "GB",
+   });
 
    function getOrganization() {
-       return organization;
+     return organization;
    }
    function setOrganization(arg) {
-       organization = new Organization(arg);
+     organization = new Organization(arg);
    }
    ```
 
@@ -99,21 +108,29 @@ let organization = new Organization({name: "Acme Gooseberries", country: "GB"});
 
    ```typescript
    class Organization {
-       private _data;
+     private _data;
 
-       constructor(data) {
-           this._data = data;
-       }
+     constructor(data) {
+       this._data = data;
+     }
 
-       get name() { return this._data.name; }
-       set name(value) { this._data.name = value; }
+     get name() {
+       return this._data.name;
+     }
+     set name(value) {
+       this._data.name = value;
+     }
 
-       get country() { return this._data.country; }
-       set country(value) { this._data.country = value; }
+     get country() {
+       return this._data.country;
+     }
+     set country(value) {
+       this._data.country = value;
+     }
 
-       get rawData() {
-           return {...this._data};
-       }
+     get rawData() {
+       return { ...this._data };
+     }
    }
    ```
 
@@ -135,19 +152,27 @@ let organization = new Organization({name: "Acme Gooseberries", country: "GB"});
 
    ```typescript
    class Organization {
-       private _name: string;
-       private _country: string;
+     private _name: string;
+     private _country: string;
 
-       constructor(data: {name: string, country: string}) {
-           this._name = data.name;
-           this._country = data.country;
-       }
+     constructor(data: { name: string; country: string }) {
+       this._name = data.name;
+       this._country = data.country;
+     }
 
-       get name() { return this._name; }
-       set name(value) { this._name = value; }
+     get name() {
+       return this._name;
+     }
+     set name(value) {
+       this._name = value;
+     }
 
-       get country() { return this._country; }
-       set country(value) { this._country = value; }
+     get country() {
+       return this._country;
+     }
+     set country(value) {
+       this._country = value;
+     }
    }
    ```
 
